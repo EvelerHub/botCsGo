@@ -1,0 +1,13 @@
+//
+   Created by Vafle on 10/26/2015.
+
+extends layout
+block content
+    h1 Search results
+
+    each item in items
+        div.row
+            img(src=item.img)
+            span=item.price
+            span &nbsp
+            a(href="/item?game="+item.game+"&text="+item.name)=item.name

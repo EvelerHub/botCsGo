@@ -1,0 +1,35 @@
+//
+   Created by Vafle on 11/15/2015.
+extends layout
+
+
+
+block content
+    table('border=1px')
+        thead
+            tr
+                td name
+                td login
+                td lastupdate
+                td status
+                td error
+
+        tbody
+            each bot in bots
+                tr
+                    td=bot.name
+                    td=bot.login
+                    td=bot.updateDate
+                    td=bot.status
+                        if bot.status=='stopped' || bot.status=='new' || bot.status=='error'
+                            button.stopstartbot(data-name=bot.name,data-action='start') Start
+                        else if bot.status=='started'
+                            button.stopstartbot(data-name=bot.name,data-action='stop') Stop
+                    td=bot.message
+    form(action='/bot',id='myForm',method='post')
+        input(id='name',type=text,placeholder='Name')
+        input(id='login',type=text,placeholder='Login')
+        input(id='pass',type=password,placeholder='Password')
+        input(id='steam_key',type=text,placeholder='steam_key')
+        input(id='market_key',type=text,placeholder='market_key')
+    button#addbot Add bot
